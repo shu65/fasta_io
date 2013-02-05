@@ -35,6 +35,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
+#include <fstream>
 #include "../src/fasta_io.hpp"
 
 using namespace std;

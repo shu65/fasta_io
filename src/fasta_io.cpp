@@ -51,7 +51,7 @@ int fast_io::ReadRecode(std::istream &istream, std::string &header, std::string 
   while (!istream.eof() && (line.length() == 0 || line.at(0) != '>')) {
     std::getline(istream, line);
   }
-  if (!istream.eof()) {
+  if (istream.eof()) {
     return 1;
   }
 
