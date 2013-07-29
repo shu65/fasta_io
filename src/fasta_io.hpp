@@ -40,7 +40,7 @@
 #include <vector>
 #include <iostream>
 
-namespace fast_io {
+namespace fasta_io {
 int ReadRecode(std::istream &istream, std::string &header, std::string &sequence);
 int WriteRecode(std::ostream &ostream, const std::string &header, const std::string &sequence);
 

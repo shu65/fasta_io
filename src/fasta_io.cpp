@@ -40,7 +40,7 @@
 
 using namespace std;
 
-int fast_io::ReadRecode(std::istream &istream, std::string &header, std::string &sequence) {
+int fasta_io::ReadRecode(std::istream &istream, std::string &header, std::string &sequence) {
   header.clear();
   sequence.clear();
   string line;
@@ -88,7 +88,7 @@ int fast_io::ReadRecode(std::istream &istream, std::string &header, std::string 
   return 0;
 }
 
-int fast_io::WriteRecode(std::ostream &ostream, const std::string &header, const std::string &sequence) {
+int fasta_io::WriteRecode(std::ostream &ostream, const std::string &header, const std::string &sequence) {
   if (!ostream) {
     return 1;
   }

@@ -46,37 +46,37 @@ TEST(FastaIoTest, ReadRecode) {
   string header;
   string sequence;
   int ret = 0;
-  ret = fast_io::ReadRecode(in, header, sequence);
+  ret = fasta_io::ReadRecode(in, header, sequence);
   EXPECT_EQ(0, ret);
   EXPECT_EQ("test0", header);
   EXPECT_EQ("AGCGAGAGCGAGTGGTGGGCAAAAAAACCTATACTGCAAAATTTTATGAAAGGTGCTTATTGTCCTCTGAATGAT",
       sequence);
 
-  ret = fast_io::ReadRecode(in, header, sequence);
+  ret = fasta_io::ReadRecode(in, header, sequence);
   EXPECT_EQ(0, ret);
   EXPECT_EQ("test1 is added A at forward oftest1 ", header);
   EXPECT_EQ("AAGCGAGAGCGAGTGGTGGGCAAAAAAACCTATACTGCAAAATTTTATGAAAGGTGCTTATTGTCCTCTGAATGA",
       sequence);
 
-  ret = fast_io::ReadRecode(in, header, sequence);
+  ret = fasta_io::ReadRecode(in, header, sequence);
   EXPECT_EQ(0, ret);
   EXPECT_EQ("test5", header);
   EXPECT_EQ("GCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCT",
       sequence);
 
-  ret = fast_io::ReadRecode(in, header, sequence);
+  ret = fasta_io::ReadRecode(in, header, sequence);
   EXPECT_EQ(0, ret);
   EXPECT_EQ("test6", header);
   EXPECT_EQ("GCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTATGAAAGGTGCTTATTGTCCTCTGAATGAT",
       sequence);
 
-  ret = fast_io::ReadRecode(in, header, sequence);
+  ret = fasta_io::ReadRecode(in, header, sequence);
   EXPECT_EQ(0, ret);
   EXPECT_EQ("test7 reverse complementary strand of test6", header);
   EXPECT_EQ("ATCATTCAGAGGACAATAAGCACCTTTCATAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGC",
       sequence);
 
-  ret = fast_io::ReadRecode(in, header, sequence);
+  ret = fasta_io::ReadRecode(in, header, sequence);
   EXPECT_NE(0, ret);
 }
 
