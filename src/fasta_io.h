@@ -36,10 +36,6 @@
 #ifndef FASTA_IO_HPP_
 #define FASTA_IO_HPP_
 
-#include <string>
-#include <vector>
-#include <iostream>
-
 #include "fasta_io/fasta_reader.h"
 #include "fasta_io/fasta_writer.h"
 
