@@ -1,7 +1,7 @@
 /*
- * fasta_io_test.cpp
+ * fasta_reader.h
  *
- *   Copyright (c) 2013, Shuji Suzuki
+ *   Copyright (c) 2014, Shuji Suzuki
  *   All rights reserved.
  *
  *   Redistribution and use in source and binary forms, with or without
@@ -33,50 +33,44 @@
  *
  */
 
-#include <gtest/gtest.h>
-#include <string>
+#ifndef FASTA_READER_H_
+#define FASTA_READER_H_
+
+#include <iostream>
 #include <fstream>
-#include "../src/fasta_io.hpp"
+#include <string>
 
-using namespace std;
+namespace fasta_io {
 
-TEST(FastaIoTest, ReadRecode) {
-  ifstream in("./test/test_dna.fa");
-  ASSERT_TRUE(in);
-  string header;
-  string sequence;
-  int ret = 0;
-  ret = fasta_io::ReadRecode(in, header, sequence);
-  EXPECT_EQ(0, ret);
-  EXPECT_EQ("test0", header);
-  EXPECT_EQ("AGCGAGAGCGAGTGGTGGGCAAAAAAACCTATACTGCAAAATTTTATGAAAGGTGCTTATTGTCCTCTGAATGAT",
-      sequence);
+class FastaReader {
+public:
+	FastaReader();
+	virtual ~FastaReader();
 
-  ret = fasta_io::ReadRecode(in, header, sequence);
-  EXPECT_EQ(0, ret);
-  EXPECT_EQ("test1 is added A at forward oftest1 ", header);
-  EXPECT_EQ("AAGCGAGAGCGAGTGGTGGGCAAAAAAACCTATACTGCAAAATTTTATGAAAGGTGCTTATTGTCCTCTGAATGA",
-      sequence);
+	void Open(const char * filename) {
+		is_.open(filename);
+	}
 
-  ret = fasta_io::ReadRecode(in, header, sequence);
-  EXPECT_EQ(0, ret);
-  EXPECT_EQ("test5", header);
-  EXPECT_EQ("GCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCT",
-      sequence);
+	void Close() {
+		is_.close();
+	}
 
-  ret = fasta_io::ReadRecode(in, header, sequence);
-  EXPECT_EQ(0, ret);
-  EXPECT_EQ("test6", header);
-  EXPECT_EQ("GCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTGCTATGAAAGGTGCTTATTGTCCTCTGAATGAT",
-      sequence);
+	operator void*() const {
+		return static_cast<void*>(is_);
+	}
 
-  ret = fasta_io::ReadRecode(in, header, sequence);
-  EXPECT_EQ(0, ret);
-  EXPECT_EQ("test7 reverse complementary strand of test6", header);
-  EXPECT_EQ("ATCATTCAGAGGACAATAAGCACCTTTCATAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGCAGC",
-      sequence);
+	bool IsEnd() const {
+		return is_.eof();
+	}
 
-  ret = fasta_io::ReadRecode(in, header, sequence);
-  EXPECT_NE(0, ret);
-}
+	int Read(std::string &header, std::string &sequence);
 
+private:
+	FastaReader(const FastaReader&);
+	FastaReader operator=(const FastaReader&);
+
+	std::ifstream is_;
+};
+
+} /* namespace fasta_io */
+#endif /* FASTA_READER_H_ */

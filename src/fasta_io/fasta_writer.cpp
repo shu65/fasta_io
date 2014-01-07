@@ -1,7 +1,7 @@
 /*
- * fasta_io.hpp
+ * fasta_writer.cpp
  *
- *   Copyright (c) 2013, Shuji Suzuki
+ *   Copyright (c) 2014, Shuji Suzuki
  *   All rights reserved.
  *
  *   Redistribution and use in source and binary forms, with or without
@@ -33,17 +33,34 @@
  *
  */
 
-#ifndef FASTA_IO_HPP_
-#define FASTA_IO_HPP_
+#include "fasta_writer.h"
 
-#include <string>
-#include <vector>
-#include <iostream>
+using namespace std;
 
 namespace fasta_io {
-int ReadRecode(std::istream &istream, std::string &header, std::string &sequence);
-int WriteRecode(std::ostream &ostream, const std::string &header, const std::string &sequence);
+
+FastaWriter::FastaWriter() {
 
 }
 
-#endif /* FASTA_IO_HPP_ */
+FastaWriter::~FastaWriter() {
+
+}
+
+int FastaWriter::Write(const std::string &header, const std::string &sequence) {
+	if (!os_) {
+		return 1;
+	}
+	const size_t max_length = 60;
+	os_ << ">" << header << endl;
+
+	size_t position = 0;
+	while ((position + max_length) < sequence.length()) {
+		os_ << sequence.substr(position, max_length) << endl;
+		position += max_length;
+	}
+	os_ << sequence.substr(position) << endl;
+	return 0;
+}
+
+} /* namespace fasta_io */
