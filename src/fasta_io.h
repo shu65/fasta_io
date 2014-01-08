@@ -33,10 +33,9 @@
  *
  */
 
-#ifndef FASTA_IO_HPP_
-#define FASTA_IO_HPP_
+#pragma once
 
 #include "fasta_io/fasta_reader.h"
 #include "fasta_io/fasta_writer.h"
 
-#endif /* FASTA_IO_HPP_ */
+

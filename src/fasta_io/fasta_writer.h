@@ -33,8 +33,7 @@
  *
  */
 
-#ifndef FASTA_WRITER_H_
-#define FASTA_WRITER_H_
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -74,4 +73,4 @@ private:
 };
 
 } /* namespace fasta_io */
-#endif /* FASTA_WRITER_H_ */
+

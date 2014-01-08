@@ -1,7 +1,7 @@
 /*
  * fasta_reader_test.cpp
  *
-*   Copyright (c) 2014, Shuji Suzuki
+ *   Copyright (c) 2014, Shuji Suzuki
  *   All rights reserved.
  *
  *   Redistribution and use in source and binary forms, with or without

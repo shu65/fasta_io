@@ -33,8 +33,7 @@
  *
  */
 
-#ifndef FASTA_READER_H_
-#define FASTA_READER_H_
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -73,4 +72,3 @@ private:
 };
 
 } /* namespace fasta_io */
-#endif /* FASTA_READER_H_ */
